@@ -65,4 +65,5 @@ hs_err_pid*
 replay_pid*
 
 secret.yaml
+secret.yml
 ./data/
