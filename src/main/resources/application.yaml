@@ -1,0 +1,124 @@
+spring:
+  jackson:
+    time-zone: UTC
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 30MB
+  config:
+    import: classpath:secret.yml
+  application:
+    name: task_scape
+  jwt:
+    secret:
+      key: ${LOCAL.AUTH.JWT.SECRET.KEY}
+      expiration: 14400 # 4 hours in seconds
+#  data:
+#    redis:
+#      port: ${LOCAL.REDIS.PORT}
+#      host: ${LOCAL.REDIS.HOST}
+#      timeout: ${LOCAL.REDIS.TIMEOUT}
+  jpa:
+    database: postgresql
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        default_batch_fetch_size: 100
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${LOCAL.DATABASE.URL}
+    username: ${LOCAL.DATABASE.USERNAME}
+    password: ${LOCAL.DATABASE.PASSWORD}
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${COMMON.OAUTH2.GOOGLE.CLIENT_ID}
+            client-secret: ${COMMON.OAUTH2.GOOGLE.CLIENT_SECRET}
+            redirect-uri: ${COMMON.OAUTH2.GOOGLE.REDIRECT_URI}
+            scope: profile, email
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: ${COMMON.MAIL.USERNAME}
+#    password: ${COMMON.MAIL.PASSWORD}
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#          ssl:
+#            trust: smtp.gmail.com
+#cloud:
+#  aws:
+#    base-url: ${COMMON.AWS.S3.BASE_URL}
+#    return-url: ${COMMON.AWS.S3.RETURN_BASE_URL}
+#    s3:
+#      bucket: ${LOCAL.AUTH.S3.bucket}
+#    region:
+#      static: ${LOCAL.AUTH.S3.region}
+#      auto: false
+#    stack:
+#      auto: false
+#    credentials:
+#      access-key: ${LOCAL.AUTH.S3.access-key}
+#      secret-key: ${LOCAL.AUTH.S3.secret-key}
+#openai:
+#  api:
+#    key: ${COMMON.CHATGPT.SECRET.KEY}
+#
+#openapi:
+#  holiday:
+#    key: ${COMMON.KASI.HOLIDAY.API.KEY}
+#    url: ${COMMON.KASI.HOLIDAY.API.URL}
+#
+#exchange:
+#  api:
+#    key: ${COMMON.EXCHANGE.API.KEY}
+#    url: ${COMMON.EXCHANGE.API.URL}
+#    data-type: ${COMMON.EXCHANGE.API.DATA}
+#
+#payment:
+#  mid: ${LOCAL.PAYMENT.MID}
+#  client-key: ${LOCAL.PAYMENT.CLIENT_KEY}
+#  secret-key: ${LOCAL.PAYMENT.SECRET_KEY}
+#  base-url: ${LOCAL.PAYMENT.BASE_URL}
+#  exchange-url: ${LOCAL.PAYMENT.EXCHANGE_URL}
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: always
+#      group:
+#        readiness:
+#          include: db, redis, diskSpace, mail
+#        liveness:
+#          include: ping
+#    prometheus:
+#      enabled: true
+#  prometheus:
+#    metrics:
+#      export:
+#        enabled: true
+#
+#logging:
+#  level:
+#    org.springframework.boot: WARN
+#    org.springframework: WARN
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.hibernate.stat: DEBUG
+#    today.story.backend.location.service: DEBUG
+#    today.story.backend.company.repository: DEBUG
+#    today.story.backend.location.repository: DEBUG
